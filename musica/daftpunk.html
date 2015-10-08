@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ROM-PacMe: Daft Punk.</title>
+	<link rel="stylesheet" href="../css/estilos.css">
+	<link rel="stylesheet" href="../css/pacmeplayer.css">
+	<link rel="stylesheet" href="../css/nav.css">
+	<link rel="stylesheet" href="../css/masonpic.css">
+</head>
+<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' type='text/javascript'/>
+<script>
+</script>
+<body>
+	<header>
+		<div class="menu">
+			<div class="contenedor">
+				<a href="#">
+					<div class="imagen"></div>
+				</a>
+				<a href="#">
+					<div class="logo">ROM-PacMe</div>
+				</a>
+				<nav>
+					<ul>
+						<ul>
+							<li><a href="/inicio">Inicio</a></li>
+							<li><a href="/inicio">Sobre Mi</a></li>
+							<li><a href="/inicio">Archivos</a></li>
+							<li><a href="/inicio">Contacto</a></li>
+						</ul>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</header>
+<div class="imagenes">
+	<div class="elemento">
+		<img src="../img/ram.jpg" alt="" width="300" height="200">
+		<p>Daft Punk - RAM</p>
+	</div>
+</div>
+	<div id='player'>
+		<audio controls='' id='audio' preload='auto' tabindex='0' type='audio/mpeg' src='src/Virus.mp3'>
+			<source src='../src/RAM/01.m4a' type='audio/mp3'/>
+			Hola, tu navegador no está actualizado y no puede mostrar este contenido.
+		</audio>
+	</div>
+	<ul id='playlist'>
+		<li class='active'><a href='../src/RAM/01.m4a'>Give Life Back to Music - Daft Punk - RAM</a></li>
+		<li><a href='../src/RAM/02.m4a'>The Game of Love - Daft Punk - RAM</a></li>
+		<li><a href='../src/RAM/03.m4a'>Giorgio by Moroder - Daft Punk - RAM</a></li>
+		<li><a href="../src/RAM/04.m4a">Within - Daft Punk - RAM</a></li>
+		<li><a href="../src/RAM/05.m4a">Instant Crush - Daft Punk Ft. Julian Casablancas - RAM</a></li>
+		<li><a href="../src/RAM/06.m4a">Lose Yourself to Dance - Daft Punk Ft. Pharrell Williams - RAM</a></li>
+		<li><a href="../src/RAM/07.m4a">Touch - Daft Punk Ft. Paul Williams - RAM</a></li>
+		<li><a href="../src/RAM/08.m4a">Get Lucky - Daft Punk Ft. Pharrell Williams - RAM</a></li>
+		<li><a href="../src/RAM/09.m4a">Beyond - Daft Punk - RAM</a></li>
+		<li><a href="../src/RAM/10.m4a">Motherboard - Daft Punk - RAM</a></li>
+		<li><a href="../src/RAM/11.m4a">Fragments of Time - Daft Punk Ft. Todd Edwards - RAM</a></li>
+		<li><a href="../src/RAM/12.m4a">Doin' It Right - Daft Punk Ft. Panda Bear - RAM</a></li>
+		<li><a href="../src/RAM/13.m4a">Contact - Daft Punk - RAM</a></li>
+	</ul>
+<script>
+//<![CDATA[
+var audio;
+var playlist;
+var tracks;
+var current;
+
+init();
+function init(){
+    current = 0;
+    audio = $('audio');
+    playlist = $('#playlist');
+    tracks = playlist.find('li a');
+    len = tracks.length - 1;
+    audio[0].volume = 1;
+    playlist.find('a').click(function(e){
+        e.preventDefault();
+        link = $(this);
+        current = link.parent().index();
+        run(link, audio[0]);
+    });
+    audio[0].addEventListener('ended',function(e){
+        current++;
+        if(current > len){
+            current = 0;
+            link = playlist.find('a')[0];
+        }else{
+            link = playlist.find('a')[current];    
+        }
+        run($(link),audio[0]);
+    });
+}
+function run(link, player){
+        player.src = link.attr('href');
+        par = link.parent();
+        par.addClass('active').siblings().removeClass('active');
+        audio[0].load();
+        audio[0].play();
+}
+  //]]>
+</script>
+</body>
+</html>
