@@ -19,7 +19,7 @@ display: inline-block
 }
 #player:after {
 /* Imagen animada */
-content: url(//lh3.googleusercontent.com/-KoD5KVOAsGQ/U1B_dWFttoI/AAAAAAAAFFc/uJ3SjLPlDHQ/s75/equalizador.gif);
+content: url(../img/001.gif);
 padding-left: 10px;
 }
 #playlist {
